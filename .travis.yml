@@ -8,10 +8,10 @@ language:
 
 script:
     - tar -zcvf dummy.tar.gz dummy/
-
-before_deploy:
     - export FILE_TO_UPLOAD=$(ls _builds/dummy.tar.gz)
     - echo $FILE_TO_UPLOAD
+
+before_deploy:
 
 deploy:
     provider: releases

@@ -1,0 +1,21 @@
+sudo: 'required'
+
+services:
+  - 'docker'
+
+language:
+  - 'bash'
+
+script:
+    - tar -zcvf dummy.tar.gz dummy/
+
+before_deploy:
+    - export FILE_TO_UPLOAD=$(ls _builds/*/dummy.tar.gz)
+    
+deploy:
+    provider: releases
+    api_key: "81412c561f01178fbd4fd621ce8f6616197961de"
+    file: "${FILE_TO_UPLOAD}"
+    skip_cleanup: true
+    on:
+        tags: true

@@ -11,10 +11,11 @@ script:
 
 before_deploy:
     - export FILE_TO_UPLOAD=$(ls _builds/*/dummy.tar.gz)
-    
+
 deploy:
     provider: releases
-    api_key: "81412c561f01178fbd4fd621ce8f6616197961de"
+    api_key:
+      - secure: "k8TAn+sGWg8mafIpEN4qCmc16UULLp9EQTRa4F/ISmmAvzP9mFhUVOBy3CcjvM08vZA8Fq2LyGqOtrRrudLvqtF1lkmB84D1/3QcYKOBbZsk46wG0Usp/wwSxnfmW03RNRzoDU+63BCjvujOA+LomvzYD0+VFGeEqC0Q7UJmTqIZyd4ryxsozD0y0rFCY1WQATO+u+dkkXqjiaflQ2WtiSX8xtA/NSxFxSRaEPldaJbkK4kOM23a+/qVbcdg2iBJekPz2L8/qjGMCt37rUyrIDu8eQrup6jstTiCB5ek8gWRJKg2yN0T+8BPwI54Dkifbw6ZTzXd/LTE5/eD0BPzPVTwLIpVPAmDXGy6fJiOHmjK+A3XYPlCBA5omjtpfPb+unD+A/S0c4WJ/lDhYGk+ljg0EkN76VkhqXS9XdfaMGSecAteOpKDxaUX3DOuoa4rKV/ogetyfCwguW7C5njXX50YC29RYWLaJGsEgX68rqgLgg0Id6uMyFncqAgdBaFECAtjwuZyFBfF1BhlAIJgp6Ztapk4fFg3zV7FKgkjDbAyvtRt1KmYd9gmTg21lGYKOj0SHNmVaV8n9vbxE5z1TljcICs+SdgMFsldI5wPZXArhmeic0lhtezslXy3O0h0lRU3dMcPP+8Z2oHMSQp95ca7485SyyHXbsK0WmGLXMI="
     file: "${FILE_TO_UPLOAD}"
     skip_cleanup: true
     on:

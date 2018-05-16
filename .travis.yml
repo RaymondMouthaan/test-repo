@@ -8,7 +8,9 @@ language:
 
 script:
     - tar -zcvf dummy.tar.gz dummy/
-    - export FILE_TO_UPLOAD=$(ls _builds/dummy.tar.gz)
+    - pwd
+    - ls -al
+    - export FILE_TO_UPLOAD=$(ls *dummy.tar.gz)
     - echo $FILE_TO_UPLOAD
 
 before_deploy:

@@ -12,8 +12,8 @@ env:
       - QEMU_VERSION=v2.12.0
     matrix:
       - BUILD_FROM=amd64/alpine:3.7 QEMU_ARCH=x86_64 OS_ARCH=alpine-amd64
-      - BUILD_FROM=arm32v6/alpine:3.7 QEMU_ARCH=arm OS_ARCH=alpine-amd64
-      - BUILD_FROM=arm64v8/alpine:3.7 QEMU_ARCH=aarch64 OS_ARCH=alpine-amd64
+      - BUILD_FROM=arm32v6/alpine:3.7 QEMU_ARCH=arm OS_ARCH=alpine-arm32v6
+      - BUILD_FROM=arm64v8/alpine:3.7 QEMU_ARCH=aarch64 OS_ARCH=alpine-arm64v8
 
 before_install:
     - mkdir tmp

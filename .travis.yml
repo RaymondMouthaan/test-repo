@@ -33,6 +33,17 @@ script:
     # Tag Docker image
     - docker tag ${TARGET}:build-${OS_ARCH} $TARGET:${BUILD_VERSION}-${OS_ARCH}
 
+after_deploy:
+    # Push Docker images to Docker Hub
+    # Docker Login
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    # Push all images
+    - docker push ${TARGET}:${BUILD_VERSION}-${OS_ARCH}
+    # Create and push manifest list
+    #- ./.docker/docker.sh manifest-list
+    # Docker Logout
+    #- docker logout
+
 jobs:
   include:
     - stage: push

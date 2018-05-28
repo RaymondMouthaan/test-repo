@@ -4,4 +4,4 @@ FROM ${BUILD_FROM}
 # Setup Qemu
 ARG QEMU_ARCH
 COPY tmp/qemu-${QEMU_ARCH}-static /usr/bin/qemu-${QEMU_ARCH}-static
-RUN ls -al /usr/bin/
+RUN echo "${BUILD_FROM} - ${QEMU_ARCH}"

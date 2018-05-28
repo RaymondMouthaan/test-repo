@@ -30,5 +30,6 @@ script:
     - docker run -d --rm --name=test-${OS_ARCH} ${TARGET}:build-${OS_ARCH}
 
 jobs:
+  include:
     - stage: push
       script: echo "Pushing docker images."

@@ -14,9 +14,6 @@ env:
 before_install:
     - > mkdir tmp
     - > echo "PREPARE: Setting up dependencies."
-    - > sudo apt update -y
-    # sudo apt install realpath python python-pip -y
-    - > sudo apt install --only-upgrade docker-ce -y
 
 jobs:
     - stage: push

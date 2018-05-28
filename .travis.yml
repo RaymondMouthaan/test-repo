@@ -32,4 +32,7 @@ script:
 jobs:
   include:
     - stage: push
-      script: echo "Pushing docker images."
+      script:
+        - echo "Pushing docker images."
+        - docker manifest
+        - docker image ls

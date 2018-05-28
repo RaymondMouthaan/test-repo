@@ -24,8 +24,10 @@ install: true
 before_script:
 
 script:
-    # Build Docker images
+    # Build Docker image
     - docker build --build-arg BUILD_FROM=${BUILD_FROM} --build-arg QEMU_ARCH=${QEMU_ARCH} --file ./.docker/Dockerfile --tag ${TARGET}:build-${OS_ARCH} .
+    # Test Docker image
+    - docker run -d --rm --name=test-${OS_ARCH} ${TARGET}:build-${OS_ARCH}
 
 jobs:
     - stage: push

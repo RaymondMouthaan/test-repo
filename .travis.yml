@@ -7,18 +7,14 @@ language:
   - 'bash'
 
 env:
-    - ARCH=amd64
-    - ARCH=arm32v6
-    - ARCH=arm32v7
-    - ARCH=arm64v8
-
-# Build
-
-
+  - ARCH=amd64
+  - ARCH=arm32v6
+  - ARCH=arm32v7
+  - ARCH=arm64v8
 
 jobs:
-    include:
-        - stage: build
-          script: echo "Building docker images for: ${ARCH}"
-        - stage: push
-          script: echo "Pushing docker images."
+  include:
+    - stage: build
+      script: echo "Building docker images for: ${ARCH}"
+    - stage: push
+      script: echo "Pushing docker images."

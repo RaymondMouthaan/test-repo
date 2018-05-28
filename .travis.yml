@@ -12,8 +12,11 @@ env:
   - BUILD_FROM=arm64v8/alpine:3.7
 
 before_install:
-    - >
-        mkdir tmp
+    - > mkdir tmp
+    - > echo "PREPARE: Setting up dependencies."
+    - > sudo apt update -y
+    # sudo apt install realpath python python-pip -y
+    - > sudo apt install --only-upgrade docker-ce -y
 
 jobs:
     - stage: push

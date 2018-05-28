@@ -13,8 +13,5 @@ env:
   - ARCH=arm64v8
 
 jobs:
-  include:
-    - stage: build docker image
-      script: echo "Building docker images for: ${ARCH}"
-    - stage: test
+    - stage: push
       script: echo "Pushing docker images."

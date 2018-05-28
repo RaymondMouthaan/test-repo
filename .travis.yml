@@ -13,9 +13,12 @@ env:
     - ARCH=arm64v8
 
 # Build
-script: echo "Arch ${ARCH}"
+
+
 
 jobs:
     include:
+        - stage: build
+          script: echo "Building docker images for: ${ARCH}"
         - stage: push
-          script: echo "Arch ${ARCH}"
+          script: echo "Pushing docker images."

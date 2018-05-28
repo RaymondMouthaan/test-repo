@@ -7,15 +7,16 @@ language:
   - 'bash'
 
 env:
-  - BUILD_FROM=amd64/alpine:3.7
-  - BUILD_FROM=arm32v6/alpine:3.7
-  - BUILD_FROM=arm64v8/alpine:3.7
+    global:
+      - QEMU_VERSION=v2.12.0
+    matrix:
+      - BUILD_FROM=amd64/alpine:3.7
+      - BUILD_FROM=arm32v6/alpine:3.7
+      - BUILD_FROM=arm64v8/alpine:3.7
 
 before_install:
-    - >
-        mkdir tmp &&
-        sudo apt update -y &&
-        sudo apt install --only-upgrade docker-ce -y
+    - mkdir tmp
+    - ./.docker/docker.sh prepare
 
 jobs:
     - stage: push

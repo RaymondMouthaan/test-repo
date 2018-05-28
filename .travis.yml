@@ -51,3 +51,4 @@ jobs:
         - echo "Pushing docker images."
         - docker manifest
         - docker image ls
+      after_script:

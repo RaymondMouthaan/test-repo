@@ -8,15 +8,24 @@ language:
 
 env:
     global:
+      - TARGET=raymondmm/test-rep
       - QEMU_VERSION=v2.12.0
     matrix:
-      - BUILD_FROM=amd64/alpine:3.7
-      - BUILD_FROM=arm32v6/alpine:3.7
-      - BUILD_FROM=arm64v8/alpine:3.7
+      - BUILD_FROM=amd64/alpine:3.7 QEMU_ARCH=x86_64 OS_ARCH=alpine-amd64
+      - BUILD_FROM=arm32v6/alpine:3.7 QEMU_ARCH=arm OS_ARCH=alpine-amd64
+      - BUILD_FROM=arm64v8/alpine:3.7 QEMU_ARCH=aarch64 OS_ARCH=alpine-amd64
 
 before_install:
     - mkdir tmp
     - ./.docker/docker.sh prepare
+
+install: true
+
+before_script:
+
+script:
+    # Build Docker images
+    - docker build --build-arg BUILD_FROM=${BUILD_FROM} --build-arg QEMU_ARCH=${QEMU_ARCH} --file ./.docker/Dockerfile --tag ${TARGET}:build-${OS_ARCH} .
 
 jobs:
     - stage: push

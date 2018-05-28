@@ -14,10 +14,7 @@ env:
 before_install:
     - >
         mkdir tmp
-        
+
 jobs:
     - stage: push
       script: echo "Pushing docker images."
-
-
-"PREPARE: Setting up dependencies."

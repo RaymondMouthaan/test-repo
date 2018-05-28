@@ -7,11 +7,29 @@ language:
   - 'bash'
 
 env:
-  - ARCH=amd64
-  - ARCH=arm32v6
-  - ARCH=arm32v7
-  - ARCH=arm64v8
+  - BUILD_FROM=amd64/alpine:3.7
+  - BUILD_FROM=arm32v6/alpine:3.7
+  - BUILD_FROM=arm64v8/alpine:3.7
 
+before_install:
+    - mkdir tmp
+    - echo "PREPARE: Setting up dependencies."
+    - sudo apt update -y
+    - sudo apt install --only-upgrade docker-ce -y
+    - echo "PREPARE: Updating docker configuration"
+    - mkdir $HOME/.docker
+    # enable experimental to use docker manifest command
+    - > echo '{
+        "experimental": "enabled"
+      }' | tee $HOME/.docker/config.json
+    # enable experimental
+    - > echo '{
+        "experimental": true,
+        "storage-driver": "overlay2",
+        "max-concurrent-downloads": 100,
+        "max-concurrent-uploads": 100
+      }' | sudo tee /etc/docker/daemon.json
+    - docker manifest
 jobs:
     - stage: push
       script: echo "Pushing docker images."

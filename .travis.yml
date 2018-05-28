@@ -13,13 +13,8 @@ env:
 
 before_install:
     - >
-        mkdir tmp &&
-        echo "PREPARE:" &&
-        sudo apt update -y &&
-        sudo apt install --only-upgrade docker-ce -y &&
-        echo "PREPARE: Updating docker configuration" &&
-        mkdir $HOME/.docker &&
-    - docker manifest
+        mkdir tmp
+        
 jobs:
     - stage: push
       script: echo "Pushing docker images."

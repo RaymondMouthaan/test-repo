@@ -13,10 +13,10 @@ env:
 
 before_install:
     - mkdir tmp
-    - echo "PREPARE: Setting up dependencies."
+    - > echo "PREPARE: Setting up dependencies."
     - sudo apt update -y
     - sudo apt install --only-upgrade docker-ce -y
-    - echo "PREPARE: Updating docker configuration"
+    - > echo "PREPARE: Updating docker configuration"
     - mkdir $HOME/.docker
     # enable experimental to use docker manifest command
     - > echo '{

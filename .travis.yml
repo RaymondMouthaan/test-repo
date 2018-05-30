@@ -50,7 +50,14 @@ jobs:
     - stage: manifest
       script:
         - echo "Create manifest list for all docker images."
-        - docker pull ${TARGET}:${BUILD_VERSION}-${OS_ARCH}
+
+        - docker pull ${TARGET}:${BUILD_VERSION}-alpine-amd64
+        - docker pull ${TARGET}:${BUILD_VERSION}-alpine-arm32v6
+        - docker pull ${TARGET}:${BUILD_VERSION}-alpine-arm64v8
+
+
+        - ./.docker/docker.sh manifest-list
+
         - docker manifest
         - docker image ls
       after_script:

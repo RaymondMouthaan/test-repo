@@ -50,6 +50,7 @@ jobs:
     - stage: manifest
       script:
         - echo "Create manifest list for all docker images."
+        - docker pull ${TARGET}:${BUILD_VERSION}-${OS_ARCH}
         - docker manifest
         - docker image ls
       after_script:

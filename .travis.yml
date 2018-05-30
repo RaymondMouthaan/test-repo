@@ -25,7 +25,7 @@ before_script:
     # Set BUILD_VERSION
     - if [ ! -z "$TRAVIS_TAG" ]; then export BUILD_VERSION=$TRAVIS_TAG; else export BUILD_VERSION=$TRAVIS_BRANCH; fi
 
-script:
+script: "Build"
     # Build Docker image
     - echo Build Docker image":" ${OS_ARCH}
     - docker build --build-arg BUILD_FROM=${BUILD_FROM} --build-arg QEMU_ARCH=${QEMU_ARCH} --file ./.docker/Dockerfile --tag ${TARGET}:build-${OS_ARCH} .
@@ -52,7 +52,7 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-    
+
 jobs:
   include:
     - stage:     manifest

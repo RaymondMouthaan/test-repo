@@ -53,3 +53,6 @@ jobs:
         - ./.docker/docker.sh manifest-list
         # Docker Logout
         - docker logout
+    - stage: release
+      script:
+        - echo "Release ${BUILD_VERSION}"

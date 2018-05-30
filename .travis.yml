@@ -27,6 +27,7 @@ before_script:
 
 script:
     # Build Docker image
+    - echo Build Docker image":" ${OS_ARCH}
     - docker build --build-arg BUILD_FROM=${BUILD_FROM} --build-arg QEMU_ARCH=${QEMU_ARCH} --file ./.docker/Dockerfile --tag ${TARGET}:build-${OS_ARCH} .
     # Test Docker image
     - docker run -d --rm --name=test-${OS_ARCH} ${TARGET}:build-${OS_ARCH}
@@ -46,9 +47,9 @@ after_script:
 
 jobs:
   include:
-    - stage: push
+    - stage: manifest
       script:
-        - echo "Pushing docker images."
+        - echo "Create manifest list for all docker images."
         - docker manifest
         - docker image ls
       after_script:

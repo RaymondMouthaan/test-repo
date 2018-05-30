@@ -46,11 +46,6 @@ jobs:
   include:
     - stage: manifest
       script:
-
-        - docker pull ${TARGET}:${BUILD_VERSION}-alpine-amd64
-        - docker pull ${TARGET}:${BUILD_VERSION}-alpine-arm32v6
-        - docker pull ${TARGET}:${BUILD_VERSION}-alpine-arm64v8
-        
         # Docker Login
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         # Create and Push Docker Manifest Lists to Docker Hub
